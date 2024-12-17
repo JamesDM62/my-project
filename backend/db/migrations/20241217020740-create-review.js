@@ -2,39 +2,41 @@
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+  options.schema = process.env.SCHEMA;
 }
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING(100),
+      spotId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Spots', key: 'id' },
+        onDelete: 'CASCADE',
         allowNull: false,
       },
-      lastName: {
-        type: Sequelize.STRING(100),
+      userId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Users', key: 'id' },
+        onDelete: 'CASCADE',
         allowNull: false,
       },
-      username: {
-        type: Sequelize.STRING(30),
+      reviewText: {
+        type: Sequelize.TEXT,
         allowNull: false,
-        unique: true
       },
-      email: {
-        type: Sequelize.STRING(255),
+      rating: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
-      },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
+        validate: {
+          min: 1,
+          max: 5
+        }
       },
       createdAt: {
         allowNull: false,
@@ -47,10 +49,17 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     }, options);
+
+    await queryInterface.addConstraint('Reviews', {
+      fields: ['userId', 'spotId'],
+      type: 'unique',
+      name: 'user_spot_unique_constraint'
+    });
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Reviews";
+    await queryInterface.removeConstraint('Reviews', 'user_spot_unique_constraint');
     return queryInterface.dropTable(options);
   }
 };

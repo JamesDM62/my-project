@@ -2,39 +2,44 @@
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+  options.schema = process.env.SCHEMA;
 }
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Bookings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING(100),
+      userId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Users', key: 'id' },
+        onDelete: 'CASCADE',
         allowNull: false,
       },
-      lastName: {
-        type: Sequelize.STRING(100),
+      spotId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Spots', key: 'id' },
+        onDelete: 'CASCADE',
         allowNull: false,
       },
-      username: {
-        type: Sequelize.STRING(30),
+      startDate: {
+        type: Sequelize.DATEONLY,
         allowNull: false,
-        unique: true
+        validate: {
+          isBefore(value) {
+            if (new Date(value) >= new Date(this.endDate)) {
+              throw new Error('startDate must be before endDate');
+            }
+          }
+        }
       },
-      email: {
-        type: Sequelize.STRING(255),
+      endDate: {
+        type: Sequelize.DATEONLY,
         allowNull: false,
-        unique: true
-      },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -50,7 +55,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Bookings";
     return queryInterface.dropTable(options);
   }
 };
