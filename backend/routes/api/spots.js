@@ -1,6 +1,6 @@
 // backend/routes/api/spots.js
 const express = require('express');
-const { Spot, SpotImage, Review, User, sequelize } = require('../../db/models');
+const { Spot, SpotImage, Review, User, ReviewImage, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 
@@ -55,6 +55,44 @@ router.get('/current', requireAuth, async (req, res, next) => {
     next(error);
   }
 });
+
+// Route to get all reviews for a specific spot
+router.get('/:spotId/reviews', async (req, res, next) => {
+  const { spotId } = req.params;  // Get the spotId from the URL parameter
+
+  try {
+      // Check if the spot exists in the database
+      const spot = await Spot.findByPk(spotId);
+      if (!spot) {
+          return res.status(404).json({
+              message: "Spot couldn't be found"
+          });
+      }
+
+      // Fetch reviews for the specific spot using the spotId
+      const reviews = await Review.findAll({
+          where: { spotId },  // Filter reviews based on spotId
+          include: [
+              {
+                  model: User,
+                  attributes: ['id', 'firstName', 'lastName']  // Include user details for the reviewer
+              },
+              {
+                  model: ReviewImage,
+                  attributes: ['id', 'url']  // Include review images
+              }
+          ]
+      });
+
+      // Send reviews back in the response
+      res.status(200).json({
+          Reviews: reviews.map(review => review.toJSON())  // Map to JSON format for better consistency
+      });
+  } catch (err) {
+      next(err);  // Handle any errors (e.g., database issues)
+  }
+});
+
 
 // Get details of a Spot by id
 router.get('/:spotId', async (req, res, next) => {

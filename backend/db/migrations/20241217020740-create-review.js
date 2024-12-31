@@ -26,8 +26,8 @@ module.exports = {
         onDelete: 'CASCADE',
         allowNull: false,
       },
-      reviewText: {
-        type: Sequelize.TEXT,
+      review: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       stars: {
@@ -54,7 +54,7 @@ module.exports = {
       fields: ['userId', 'spotId'],
       type: 'unique',
       name: 'user_spot_unique_constraint'
-    });
+    }, options);
   },
 
   async down(queryInterface, Sequelize) {

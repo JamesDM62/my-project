@@ -20,7 +20,9 @@ module.exports = {
         lng: -122.4730327,
         name: 'App Academy',
         description: 'Place where web developers are created',
-        price: 123
+        price: 123,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         ownerId: 2,
@@ -32,7 +34,9 @@ module.exports = {
         lng: -118.243683,
         name: 'Tech Hub',
         description: 'Collaborative tech space',
-        price: 150
+        price: 150,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         ownerId: 3,
@@ -44,7 +48,9 @@ module.exports = {
         lng: -73.935242,
         name: 'Learn Lab',
         description: 'Innovative space for creators',
-        price: 200
+        price: 200,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], { validate: true });
   },

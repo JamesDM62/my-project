@@ -619,7 +619,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * Route path: /api/session/reviews
+  * Route path: /api/reviews/current
   * Body: none
 
 * Successful Response

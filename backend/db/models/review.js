@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      reviewText: {
-        type: DataTypes.TEXT,
+      review: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       stars: {

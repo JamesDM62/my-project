@@ -14,25 +14,19 @@ module.exports = {
         spotId: 1,  // Assuming spotId 1 exists
         userId: 1,  // Assuming userId 1 exists
         review: 'This was an awesome spot!',
-        stars: 5,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        stars: 4,
       },
       {
         spotId: 2,  // Assuming spotId 2 exists
         userId: 2,  // Assuming userId 2 exists
         review: 'Perfect space for collaboration.',
         stars: 4,
-        createdAt: new Date(),
-        updatedAt: new Date()
       },
       {
         spotId: 3,  // Assuming spotId 3 exists
         userId: 3,  // Assuming userId 3 exists
         review: 'Nice spot but a bit crowded.',
         stars: 3,
-        createdAt: new Date(),
-        updatedAt: new Date()
       }
     ], { validate: true });
   },
