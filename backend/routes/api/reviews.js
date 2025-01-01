@@ -110,57 +110,57 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 });
 
 // Delete a review image
-router.delete('/:reviewId/images/:imageId', requireAuth, async (req, res, next) => {
-    const { reviewId, imageId } = req.params;  // Extract reviewId and imageId from the URL params
-    const { user } = req; // The authenticated user from the requireAuth middleware
+// router.delete('/:reviewId/images/:imageId', requireAuth, async (req, res, next) => {
+//     const { reviewId, imageId } = req.params;  // Extract reviewId and imageId from the URL params
+//     const { user } = req; // The authenticated user from the requireAuth middleware
   
-    try {
-      // Find the review by its ID
-      const review = await Review.findByPk(reviewId);
+//     try {
+//       // Find the review by its ID
+//       const review = await Review.findByPk(reviewId);
   
-      // If the review doesn't exist, return a 404 error
-      if (!review) {
-        return res.status(404).json({
-          message: "Review couldn't be found"
-        });
-      }
+//       // If the review doesn't exist, return a 404 error
+//       if (!review) {
+//         return res.status(404).json({
+//           message: "Review couldn't be found"
+//         });
+//       }
   
-      // Check if the review belongs to the current user
-      if (review.userId !== user.id) {
-        return res.status(403).json({
-          message: "Forbidden: You do not have permission to delete this image"
-        });
-      }
+//       // Check if the review belongs to the current user
+//       if (review.userId !== user.id) {
+//         return res.status(403).json({
+//           message: "Forbidden: You do not have permission to delete this image"
+//         });
+//       }
   
-      // Find the review image by its ID
-      const reviewImage = await ReviewImage.findByPk(imageId);
+//       // Find the review image by its ID
+//       const reviewImage = await ReviewImage.findByPk(imageId);
   
-      // If the image doesn't exist, return a 404 error
-      if (!reviewImage) {
-        return res.status(404).json({
-          message: "Review Image couldn't be found"
-        });
-      }
+//       // If the image doesn't exist, return a 404 error
+//       if (!reviewImage) {
+//         return res.status(404).json({
+//           message: "Review Image couldn't be found"
+//         });
+//       }
   
-      // Check if the review image belongs to the given review
-      if (reviewImage.reviewId !== review.id) {
-        return res.status(404).json({
-          message: "Review Image couldn't be found"
-        });
-      }
+//       // Check if the review image belongs to the given review
+//       if (reviewImage.reviewId !== review.id) {
+//         return res.status(404).json({
+//           message: "Review Image couldn't be found"
+//         });
+//       }
   
-      // Delete the review image
-      await reviewImage.destroy();
+//       // Delete the review image
+//       await reviewImage.destroy();
   
-      // Return success message
-      return res.status(200).json({
-        message: "Successfully deleted"
-      });
+//       // Return success message
+//       return res.status(200).json({
+//         message: "Successfully deleted"
+//       });
   
-    } catch (err) {
-      next(err); // Pass the error to the error-handling middleware
-    }
-  });
+//     } catch (err) {
+//       next(err); // Pass the error to the error-handling middleware
+//     }
+//   });
 
   // Delete a review
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {

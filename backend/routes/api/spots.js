@@ -380,7 +380,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
       startDate,
       endDate,
     });
-    console.log(newBooking)
 
     return res.status(201).json(newBooking);
   } catch (err) {
