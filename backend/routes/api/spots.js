@@ -214,6 +214,59 @@ router.get('/', async (req, res) => {
   }
 });
 
+//create review for a spot based on spotId
+router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+  const { spotId } = req.params;
+  const { user } = req;
+  const { review, stars } = req.body;
+
+  try {
+      // Check if the spot exists
+      const spot = await Spot.findByPk(spotId);
+      if (!spot) {
+          return res.status(404).json({ message: "Spot couldn't be found" });
+      }
+
+      // Check if the user already has a review for this spot
+      const existingReview = await Review.findOne({
+          where: {
+              spotId,
+              userId: user.id,
+          },
+      });
+      if (existingReview) {
+          return res.status(500).json({ message: "User already has a review for this spot" });
+      }
+
+      // Validate request body
+      if (!review) {
+          return res.status(400).json({
+              message: "Bad Request",
+              errors: { review: "Review text is required" },
+          });
+      }
+      if (!stars || !Number.isInteger(stars) || stars < 1 || stars > 5) {
+          return res.status(400).json({
+              message: "Bad Request",
+              errors: { stars: "Stars must be an integer from 1 to 5" },
+          });
+      }
+
+      // Create the review
+      const newReview = await Review.create({
+          userId: user.id,
+          spotId,
+          review,
+          stars,
+      });
+
+      res.status(201).json(newReview);
+  } catch (err) {
+      next(err);
+  }
+});
+
+
 // Add an image to a spot
 router.post('/:spotId/images', requireAuth, async (req, res) => {
   const { spotId } = req.params;
@@ -377,6 +430,60 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     next(error); // Pass the error to the error handling middleware
   }
 });
+
+// Delete a spot image
+router.delete('/:spotId/images/:imageId', requireAuth, async (req, res, next) => {
+  const { spotId, imageId } = req.params;  // Extract spotId and imageId from the URL params
+  const { user } = req; // The authenticated user from the requireAuth middleware
+
+  try {
+    // Find the spot by its ID
+    const spot = await Spot.findByPk(spotId);
+
+    // If the spot doesn't exist, return a 404 error
+    if (!spot) {
+      return res.status(404).json({
+        message: "Spot couldn't be found"
+      });
+    }
+
+    // Check if the spot belongs to the current user (spot owner)
+    if (spot.ownerId !== user.id) {
+      return res.status(403).json({
+        message: "Forbidden: You do not have permission to delete this image"
+      });
+    }
+
+    // Find the spot image by its ID
+    const spotImage = await SpotImage.findByPk(imageId);
+
+    // If the image doesn't exist, return a 404 error
+    if (!spotImage) {
+      return res.status(404).json({
+        message: "Spot Image couldn't be found"
+      });
+    }
+
+    // Check if the image belongs to the given spot
+    if (spotImage.spotId !== spot.id) {
+      return res.status(404).json({
+        message: "Spot Image couldn't be found"
+      });
+    }
+
+    // Delete the spot image
+    await spotImage.destroy();
+
+    // Return success message
+    return res.status(200).json({
+      message: "Successfully deleted"
+    });
+
+  } catch (err) {
+    next(err); // Pass the error to the error-handling middleware
+  }
+});
+
 
 // DELETE a spot
 router.delete('/:spotId', requireAuth, async (req, res) => {

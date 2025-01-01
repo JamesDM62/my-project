@@ -50,16 +50,16 @@ module.exports = {
       }
     }, options);
 
-    await queryInterface.addConstraint('Reviews', {
-      fields: ['userId', 'spotId'],
-      type: 'unique',
-      name: 'user_spot_unique_constraint'
-    }, options);
+    // await queryInterface.addConstraint('Reviews', {
+    //   fields: ['userId', 'spotId'],
+    //   type: 'unique',
+    //   name: 'user_spot_unique_constraint'
+    // }, options);
   },
 
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";
-    await queryInterface.removeConstraint('Reviews', 'user_spot_unique_constraint');
+    // await queryInterface.removeConstraint('Reviews', 'user_spot_unique_constraint');
     return queryInterface.dropTable(options);
   }
 };
