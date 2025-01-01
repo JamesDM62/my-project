@@ -412,16 +412,20 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
       }
 
       // Validate request body
+      const errors = {};
+
       if (!review) {
-          return res.status(400).json({
-              message: "Bad Request",
-              errors: { review: "Review text is required" },
-          });
+        errors.review = "Review text is required";
       }
       if (!stars || !Number.isInteger(stars) || stars < 1 || stars > 5) {
+          errors.stars = "Stars must be an integer from 1 to 5";
+      }
+
+       // If there are validation errors, send them in the response
+      if (Object.keys(errors).length > 0) {
           return res.status(400).json({
               message: "Bad Request",
-              errors: { stars: "Stars must be an integer from 1 to 5" },
+              errors,
           });
       }
 
@@ -670,7 +674,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     // Check if the spot belongs to the current user
     if (spot.ownerId !== req.user.id) {
-      return res.status(403).json({ message: "You do not have permission to delete this spot" });
+      return res.status(403).json({ message: "Forbidden" });
     }
 
     // Delete the spot
