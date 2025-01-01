@@ -342,12 +342,12 @@ Returns the details of a spot specified by its id.
         {
           "id": 1,
           "url": "image url",
-          "preview": true
+          "previewImage": true
         },
         {
           "id": 2,
           "url": "image url",
-          "preview": false
+          "previewImage": false
         }
       ],
       "Owner": {
@@ -451,7 +451,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * Route path: /api/spots/:spotId/images
+  * Route path: /api/spot-Images/:spotImageId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -459,7 +459,7 @@ Create and return a new image for a spot specified by id.
     ```json
     {
       "url": "image url",
-      "preview": true
+      "previewImage": true
     }
     ```
 
@@ -473,7 +473,7 @@ Create and return a new image for a spot specified by id.
     {
       "id": 1,
       "url": "image url",
-      "preview": true
+      "previewImage": true
     }
     ```
 

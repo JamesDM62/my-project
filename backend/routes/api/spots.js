@@ -606,57 +606,57 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 });
 
 // Delete a spot image
-router.delete('/:spotId/images/:imageId', requireAuth, async (req, res, next) => {
-  const { spotId, imageId } = req.params;  // Extract spotId and imageId from the URL params
-  const { user } = req; // The authenticated user from the requireAuth middleware
+// router.delete('/:spotId/images/:imageId', requireAuth, async (req, res, next) => {
+//   const { spotId, imageId } = req.params;  // Extract spotId and imageId from the URL params
+//   const { user } = req; // The authenticated user from the requireAuth middleware
 
-  try {
-    // Find the spot by its ID
-    const spot = await Spot.findByPk(spotId);
+//   try {
+//     // Find the spot by its ID
+//     const spot = await Spot.findByPk(spotId);
 
-    // If the spot doesn't exist, return a 404 error
-    if (!spot) {
-      return res.status(404).json({
-        message: "Spot couldn't be found"
-      });
-    }
+//     // If the spot doesn't exist, return a 404 error
+//     if (!spot) {
+//       return res.status(404).json({
+//         message: "Spot couldn't be found"
+//       });
+//     }
 
-    // Check if the spot belongs to the current user (spot owner)
-    if (spot.ownerId !== user.id) {
-      return res.status(403).json({
-        message: "Forbidden: You do not have permission to delete this image"
-      });
-    }
+//     // Check if the spot belongs to the current user (spot owner)
+//     if (spot.ownerId !== user.id) {
+//       return res.status(403).json({
+//         message: "Forbidden: You do not have permission to delete this image"
+//       });
+//     }
 
-    // Find the spot image by its ID
-    const spotImage = await SpotImage.findByPk(imageId);
+//     // Find the spot image by its ID
+//     const spotImage = await SpotImage.findByPk(imageId);
 
-    // If the image doesn't exist, return a 404 error
-    if (!spotImage) {
-      return res.status(404).json({
-        message: "Spot Image couldn't be found"
-      });
-    }
+//     // If the image doesn't exist, return a 404 error
+//     if (!spotImage) {
+//       return res.status(404).json({
+//         message: "Spot Image couldn't be found"
+//       });
+//     }
 
-    // Check if the image belongs to the given spot
-    if (spotImage.spotId !== spot.id) {
-      return res.status(404).json({
-        message: "Spot Image couldn't be found"
-      });
-    }
+//     // Check if the image belongs to the given spot
+//     if (spotImage.spotId !== spot.id) {
+//       return res.status(404).json({
+//         message: "Spot Image couldn't be found"
+//       });
+//     }
 
-    // Delete the spot image
-    await spotImage.destroy();
+//     // Delete the spot image
+//     await spotImage.destroy();
 
-    // Return success message
-    return res.status(200).json({
-      message: "Successfully deleted"
-    });
+//     // Return success message
+//     return res.status(200).json({
+//       message: "Successfully deleted"
+//     });
 
-  } catch (err) {
-    next(err); // Pass the error to the error-handling middleware
-  }
-});
+//   } catch (err) {
+//     next(err); // Pass the error to the error-handling middleware
+//   }
+// });
 
 
 // DELETE a spot
