@@ -27,7 +27,7 @@ module.exports = {
         allowNull: false,
       },
       startDate: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATE,
         allowNull: false,
         validate: {
           isBefore(value) {
@@ -38,7 +38,7 @@ module.exports = {
         }
       },
       endDate: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       createdAt: {

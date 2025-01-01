@@ -4,6 +4,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const spotsRouter = require('./spots'); // Import the spots routes
 const reviewsRouter = require('./reviews');
+const bookingsRouter = require('./bookings');
 const { restoreUser } = require("../../utils/auth.js");
 
 
@@ -19,6 +20,8 @@ router.use('/users', usersRouter);
 router.use('/spots', spotsRouter); // Register the '/api/spots' route
 
 router.use('/reviews', reviewsRouter);
+
+router.use('/bookings', bookingsRouter)
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
