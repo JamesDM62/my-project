@@ -201,8 +201,8 @@ router.get('/:spotId', async (req, res, next) => {
 });
 
 
-
-// router.get('/', async (req, res) => {
+//GET /api/spots - Get all spots
+router.get('/', async (req, res) => {
   try {
     // Extract query parameters with defaults
     const {
