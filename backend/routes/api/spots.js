@@ -2,6 +2,7 @@
 const express = require('express');
 const { Spot, SpotImage, Review, User, ReviewImage, Booking, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+const { Op } = require('sequelize');
 
 
 const router = express.Router();
@@ -340,6 +341,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         },
       });
     }
+    
     if (start <= new Date()) {
       return res.status(400).json({
         message: 'Bad Request',

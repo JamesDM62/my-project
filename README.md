@@ -451,7 +451,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * Route path: /api/spot-Images/:spotImageId
+  * Route path: /api/spots/:spotId/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1306,7 +1306,7 @@ Delete an existing image for a Spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * Route path: /api/spots/:spotId/images/:imageId
+  * Route path: /api/spot-images/:spotImageId
   * Body: none
 
 * Successful Response
