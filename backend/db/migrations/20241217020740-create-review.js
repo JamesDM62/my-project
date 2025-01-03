@@ -50,7 +50,7 @@ module.exports = {
       }
     }, options);
 
-    await queryInterface.addConstraint('my_project_schema.Reviews', {
+    await queryInterface.addConstraint('Reviews', {
       fields: ['userId', 'spotId'],
       type: 'unique',
       name: 'user_spot_unique_constraint'
