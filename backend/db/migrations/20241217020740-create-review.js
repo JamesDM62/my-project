@@ -59,7 +59,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";
-    await queryInterface.removeConstraint('my_project_schema.Reviews', 'user_spot_unique_constraint');
+    // await queryInterface.removeConstraint('my_project_schema.Reviews', 'user_spot_unique_constraint');
     return queryInterface.dropTable(options);
   }
 };
