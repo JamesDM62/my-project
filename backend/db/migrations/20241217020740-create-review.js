@@ -50,11 +50,11 @@ module.exports = {
       }
     }, options);
 
-    await queryInterface.addConstraint('Reviews', {
+    await queryInterface.addConstraint('my_project_schema.Reviews', {
       fields: ['userId', 'spotId'],
       type: 'unique',
       name: 'user_spot_unique_constraint'
-    }, options);
+    });
   },
 
   async down(queryInterface, Sequelize) {
