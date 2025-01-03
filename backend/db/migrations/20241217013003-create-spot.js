@@ -71,6 +71,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     options.tableName = "Spots";
+    await queryInterface.removeConstraint('my_project_schema.Reviews', 'Reviews_spotId_fkey');
     return queryInterface.dropTable(options);
   }
 };
