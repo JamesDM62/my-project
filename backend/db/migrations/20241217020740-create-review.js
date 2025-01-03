@@ -50,7 +50,7 @@ module.exports = {
       }
     }, options);
 
-    await queryInterface.addConstraint('Reviews', {
+    await queryInterface.addConstraint('my_project_schema.Reviews', {
       fields: ['userId', 'spotId'],
       type: 'unique',
       name: 'user_spot_unique_constraint'
@@ -60,6 +60,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";
     await queryInterface.removeConstraint('my_project_schema.Reviews', 'Reviews_spotId_fkey');
+    await queryInterface.removeConstraint('my_project_schema.Reviews', 'Reviews_userId_fkey');
     return queryInterface.dropTable(options);
   }
 };
