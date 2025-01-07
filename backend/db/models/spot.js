@@ -46,14 +46,26 @@ module.exports = (sequelize, DataTypes) => {
       lat: {
         type: DataTypes.DECIMAL(9, 6),
         allowNull: false,
+        get() {
+          const rawValue = this.getDataValue('lat');
+          return rawValue ? parseFloat(rawValue) : null;
+        },
       },
       lng: {
         type: DataTypes.DECIMAL(9, 6),
         allowNull: false,
+        get() {
+          const rawValue = this.getDataValue('lng');
+          return rawValue ? parseFloat(rawValue) : null;
+        },
       },
       price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
+        get() {
+          const rawValue = this.getDataValue('price');
+          return rawValue ? parseFloat(rawValue) : null;
+        },
       },
     },
     {
