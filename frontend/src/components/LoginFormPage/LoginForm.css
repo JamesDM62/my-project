@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+label {
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  /* background: rgba(255, 255, 255, 0.8); */
+  /* color: #333; */
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: aqua;
+  border: none;
+  cursor: pointer;
+  height: 45px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: rgb(0, 183, 183);
+}
+
+@keyframes moveGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b, #6a11cb, #2575fc);
+    background-size: 200% 200%;
+    animation: moveGradient 10s ease infinite;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.2); /* Transparent glass effect */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px); /* Glassmorphism Effect */
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.2); /* Glass effect */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
