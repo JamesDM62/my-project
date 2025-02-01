@@ -1,25 +1,26 @@
 import { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import './LoginForm.css';
 
-const LoginFormPage = () => {
+const LoginFormModal = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
-    return dispatch(sessionActions.login({ credential, password })).catch(
-        async (res) => {
+    return dispatch(sessionActions.login({ credential, password }))
+        .then(closeModal)
+        .catch(async (res) => {
             const data = await res.json();
-            if (data?.errors) setErrors(data.errors);
+            if (data && data.errors) {
+                setErrors(data.errors);
+            }
         }
     );
   };
@@ -28,7 +29,6 @@ const LoginFormPage = () => {
     <div className="login-container">
         <div className="login-box">
             <h1>Log In</h1>
-            <p>Unlock a world of rewards with one account across Expedia, Hotels.com, and Vrbo.</p>
             <form onSubmit={handleSubmit}>
                 <label className="credentials">
                     Username or Email
@@ -50,7 +50,7 @@ const LoginFormPage = () => {
                         required
                     />
                 </label>
-                {errors.credential && <p>{errors.credential}</p>}
+                {errors.credential && (<p>{errors.credential}</p>)}
                 <button type="submit">Log In</button>
             </form>
         </div>
@@ -58,4 +58,4 @@ const LoginFormPage = () => {
   );
 };
 
-export default LoginFormPage;
+export default LoginFormModal;
