@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import SignupFormModal from "../SignupFormModal/SignupFormModal";
 import OpenModalMenuItem from "./OpenModalMenuItem";
+import './Navigation.css';
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
