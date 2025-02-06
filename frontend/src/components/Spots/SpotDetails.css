@@ -1,0 +1,188 @@
+/* Container: Maximum Width of 1000px */
+.spot-details-container {
+    max-width: 1000px; /* Maximum width */
+    margin: 0 auto; /* Center the content */
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+  
+  /* Header Section */
+.spot-header {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align to the left */
+    margin-bottom: 20px;
+    padding: 10px 0; /* Add spacing around the header */
+}
+
+.spot-location {
+    font-size: 1.2rem; /* Slightly smaller font */
+    margin: 0; /* No extra margins */
+}
+  
+.spot-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.spot-name {
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: bold; /* Bold for emphasis */
+    margin-bottom: 5px; /* Add spacing below the name */
+}
+  
+.spot-header p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+  
+.price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.spot-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Main image and smaller images side-by-side */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+  
+.main-image {
+    flex: 1; /* Takes 50% width */
+}
+  
+.main-image img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+}
+  
+.other-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two images per row */
+  gap: 10px;
+}
+  
+.other-images img {
+    width: 100%;
+    height: 240px; /* Ensure smaller images are equal height */
+    object-fit: cover;
+    border-radius: 5px; /* Optional for rounded corners */
+}
+  
+  /* Host Info */
+.host-info {
+    text-align: left; /* Align text to the far right */
+    margin-top: 10px; /* Add some spacing below the images */
+    font-size: 1.2rem;
+    font-style: italic; /* Optional: Makes the text look distinct */
+}
+  
+  /* Reserve Button */
+  .reserve-button {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    border-bottom: outset black;
+    cursor: pointer;
+    margin-top: 1px;
+  }
+
+.reserve-button-container {
+    margin-left: auto;
+    text-align: right; /* Aligns the content to the right */
+    display: flex;
+    flex-direction: column; /* Stack price/rating and button vertically */
+    align-items: flex-end; /* Align all elements to the far right */
+    gap: 0; /* Space between price/rating and the button */
+    margin-top: -25px; /* Space above the reserve button container */
+
+    border: 2px solid; /* Light gray border for the box */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Inner padding for content */
+    width: 100%; /* Full width of the container */
+    max-width: 300px; /* Limit the width of the box */
+}
+
+.price-and-rating {
+    display: flex;
+    justify-content: space-between; /* Price on the left, rating on the right */
+    width: 100%; /* Take the full width of the container */
+    max-width: 300px; /* Limit the width for alignment */
+  }
+  
+  .price {
+    font-size: 1.4rem; /* Slightly larger font for price */
+    font-weight: bold;
+    color: #222; /* Darker color for emphasis */
+  }
+  
+  .price span {
+    font-size: 1rem; /* Smaller font for "/ night" */
+    color: #555; /* Lighter color for contrast */
+  }
+  
+  .rating-info {
+    display: flex; /* Use flexbox for horizontal alignment */
+    gap: 5px; /* Add space between the star rating and review count */
+    align-items: center; /* Align vertically in case of differing font sizes */
+  }
+  
+  .star-rating {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .review-count {
+    font-size: 0.9rem;
+  }
+
+
+
+
+  
+.reserve-button:hover {
+    background-color: #0056b3;
+}
+  
+  /* Reviews Section */
+.reviews-section {
+    margin-top: 100px;
+}
+  
+.reviews-section h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+  
+.review {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+  
+.review strong {
+    font-size: 1rem;
+}
+  
+.review p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+  

@@ -1,7 +1,21 @@
 .spot-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* Adjusts dynamically */
+  gap: 20px; /* Controls spacing between items */
+  justify-content: space-around;
+  padding: 20px; /* Adds space on left & right */
+  max-width: 1200px; /* Prevents excessive stretching */
+  margin: 20px auto 0; /* Centers the grid */
+  width: 100%;
+}
+
+@media (min-width: 1100px) {
+  .spot-list {
+    grid-template-columns: repeat(4, 1fr); /* Ensures exactly 4 columns on large screens */
+    max-width: 95vw;
+    padding: 0 40px;
+    /* margin-top: 60px; */
   }
+}
+
   

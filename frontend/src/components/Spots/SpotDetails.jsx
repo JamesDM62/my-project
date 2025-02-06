@@ -1,0 +1,92 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchSpotDetails } from "../../store/spots";
+import './SpotDetails.css';
+
+function SpotDetails() {
+  const { spotId } = useParams();
+  const dispatch = useDispatch();
+  const spot = useSelector((state) => state.spots.singleSpot);
+
+  useEffect(() => {
+    dispatch(fetchSpotDetails(spotId));
+  }, [dispatch, spotId]);
+
+  if (!spot) return <p>Loading...</p>;
+
+  const imageUrl =
+  spot.previewImage || // Try the original logic
+  (spot.SpotImages?.find((img) => img.previewImage)?.url || // Use the image with previewImage: true
+  (spot.SpotImages?.length ? spot.SpotImages[0].url : null)); // Fallback to the first image
+
+  return (
+    <div className="spot-details-container">
+      {/* Header Section */}
+        <div className="spot-header">
+            <h1 className="spot-name">{spot.name}</h1>
+            <p className="spot-location">{spot.city}, {spot.state}, {spot.country}</p>
+        </div>
+  
+      {/* Images Section */}
+        <div className="spot-images">
+            <div className="main-image">
+                <img src={imageUrl} alt={spot.name} />
+            </div>
+        {/* <div className="other-images">
+          {spot.SpotImages.slice(1, 5).map((image) => (
+            <img key={image.id} src={image.url} alt={`${spot.name} additional`} />
+          ))}
+        </div> */}
+            <div className="other-images">
+                { [...Array(4)].map((_, idx) => (
+                <img
+                    key={idx}
+                    src={`https://source.unsplash.com/random/400x400?sig=${idx}`}
+                    alt={`Placeholder ${idx + 1}`}
+                />
+                ))}
+            </div>
+
+        </div>
+  
+      {/* Host Info */}
+      <div className="host-info">
+        <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
+      </div>
+  
+      {/* Reserve Button */}
+      <div className="reserve-button-container">
+        <div className="price-and-rating">
+            <p className="price-amount">${spot.price} <span>night</span></p>
+            <div className="rating-info">
+                <p className="star-rating">⭐ {spot.avgRating}</p>
+                <p className="review-count">({spot.numReviews} reviews)</p>
+            </div>
+        </div>
+        <button className="reserve-button" onClick={() => alert("Feature Coming Soon...")}>
+            Reserve
+        </button>
+      </div>
+  
+      {/* Reviews Section */}
+      <div className="reviews-section">
+        <h2>Reviews</h2>
+        {spot.reviews?.length ? (
+          spot.reviews.map((review) => (
+            <div key={review.id} className="review">
+              <p><strong>{review.user.firstName}</strong> ({new Date(review.createdAt).toLocaleDateString()})</p>
+              <p>{review.comment}</p>
+            </div>
+          ))
+        ) : (
+          <p>No reviews yet.</p>
+        )}
+      </div>
+    </div>
+  );
+  
+  
+}
+
+export default SpotDetails;
