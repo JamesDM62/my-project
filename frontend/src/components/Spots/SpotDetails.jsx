@@ -2,15 +2,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSpotDetails } from "../../store/spots";
+import { fetchSpotReviews } from "../../store/reviews";
 import './SpotDetails.css';
 
 function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.singleSpot);
+  const reviews = useSelector(
+    (state) => state.reviews[spotId] || [],
+    (prev, next) => prev.length === next.length
+  );
 
   useEffect(() => {
     dispatch(fetchSpotDetails(spotId));
+    dispatch(fetchSpotReviews(spotId));
   }, [dispatch, spotId]);
 
   if (!spot) return <p>Loading...</p>;
@@ -53,6 +59,7 @@ function SpotDetails() {
       {/* Host Info */}
       <div className="host-info">
         <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
+        <p className="spot-description">{spot.description}</p>
       </div>
   
       {/* Reserve Button */}
@@ -60,7 +67,7 @@ function SpotDetails() {
         <div className="price-and-rating">
             <p className="price-amount">${spot.price} <span>night</span></p>
             <div className="rating-info">
-                <p className="star-rating">⭐ {spot.avgRating}</p>
+                <p className="star-rating">⭐ {spot.avgStarRating.toFixed(1)}</p>
                 <p className="review-count">({spot.numReviews} reviews)</p>
             </div>
         </div>
@@ -68,15 +75,25 @@ function SpotDetails() {
             Reserve
         </button>
       </div>
+
+      <hr className="divider" />
   
       {/* Reviews Section */}
       <div className="reviews-section">
-        <h2>Reviews</h2>
-        {spot.reviews?.length ? (
-          spot.reviews.map((review) => (
+        <div className="reviews-header">
+            <p className="average-rating">⭐ {spot.avgStarRating.toFixed(1)}</p>
+            <p className="total-reviews">({spot.numReviews} reviews)</p>
+        </div>
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
             <div key={review.id} className="review">
-              <p><strong>{review.user.firstName}</strong> ({new Date(review.createdAt).toLocaleDateString()})</p>
-              <p>{review.comment}</p>
+              <p className="review-author">
+                <strong>{review.User?.firstName || "Unknown User"}</strong>
+              </p> 
+              <p className="review-date">
+                {new Date(review.createdAt).toLocaleDateString('en-US', {year: 'numeric', month: 'long'})}
+              </p>
+              <p className="review-text">{review.review}</p>
             </div>
           ))
         ) : (

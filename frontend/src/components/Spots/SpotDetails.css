@@ -88,6 +88,10 @@
     font-size: 1.2rem;
     font-style: italic; /* Optional: Makes the text look distinct */
 }
+
+.spot-description {
+  margin-top: 5px;
+}
   
   /* Reserve Button */
   .reserve-button {
@@ -101,7 +105,7 @@
     border-radius: 5px;
     border-bottom: outset black;
     cursor: pointer;
-    margin-top: 1px;
+    margin-top: auto;
   }
 
 .reserve-button-container {
@@ -111,7 +115,8 @@
     flex-direction: column; /* Stack price/rating and button vertically */
     align-items: flex-end; /* Align all elements to the far right */
     gap: 0; /* Space between price/rating and the button */
-    margin-top: -25px; /* Space above the reserve button container */
+    margin-top: -80px; /* Space above the reserve button container */
+    margin-bottom: 10px;
 
     border: 2px solid; /* Light gray border for the box */
     border-radius: 8px; /* Rounded corners */
@@ -163,12 +168,25 @@
   
   /* Reviews Section */
 .reviews-section {
-    margin-top: 100px;
+    margin-top: 10px;
 }
   
 .reviews-section h2 {
     margin-bottom: 15px;
     font-size: 1.5rem;
+}
+
+.reviews-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: -15px;
+}
+
+.review-text{
+  padding-top: 10px;
 }
   
 .review {
@@ -184,5 +202,12 @@
 .review p {
     margin: 5px 0;
     font-size: 0.9rem;
+}
+
+.divider {
+  margin: 20px 0; /* Adds spacing above and below the line */
+  border: 0;       /* Removes the default border style */
+  height: 1px;     /* Sets the height of the line */
+  background: #ccc; /* Sets the line color */
 }
   
