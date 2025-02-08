@@ -162,7 +162,162 @@
 
 
   
-.reserve-button:hover {
+.reserve-button:hover {/* Container: Maximum Width of 1000px */
+  .spot-details-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  /* Header Section */
+  .spot-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px 0;
+  }
+  
+  .spot-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .spot-location {
+    font-size: 1.2rem;
+  }
+  
+  .spot-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+    gap: 10px;
+  }
+  
+  .main-image img {
+    width: 100%;
+    height: auto;
+    max-height: 50vh; /* Max height relative to viewport */
+    object-fit: cover;
+  }
+  
+  .other-images img {
+    width: 100%;
+    height: auto;
+    max-height: 30vh;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* Reserve Button */
+  .reserve-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .price-and-rating {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .reserve-button {
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 1rem;
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .reserve-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Reviews Section */
+  .reviews-section {
+    margin-top: 20px;
+  }
+  
+  .reviews-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .review {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .review-author {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .review-date {
+    font-size: 0.9rem;
+    color: gray;
+    margin-bottom: 10px;
+  }
+  
+  .review-text {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  /* Divider */
+  .divider {
+    margin: 20px 0;
+    height: 1px;
+    background: #ccc;
+  }
+  
+  /* Responsive Media Queries */
+  @media (max-width: 768px) {
+    .spot-details-container {
+      padding: 10px;
+    }
+  
+    .spot-header h1 {
+      font-size: 2rem;
+    }
+  
+    .spot-location {
+      font-size: 1rem;
+    }
+  
+    .spot-images {
+      grid-template-columns: 1fr; /* Stack images vertically */
+    }
+  
+    .reserve-button-container {
+      align-items: center;
+    }
+  
+    .price-and-rating {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .reviews-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
     background-color: #0056b3;
 }
   
@@ -210,4 +365,8 @@
   height: 1px;     /* Sets the height of the line */
   background: #ccc; /* Sets the line color */
 }
-  
+
+.dot {
+  font-size: 14px;
+  margin-bottom: 17px;
+}

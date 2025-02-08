@@ -15,11 +15,11 @@ function SpotCard({ spot }) {
         <span className="tooltip">{spot.name}</span> {/* Tooltip on hover */}
       </div>
 
-      {/* Spot Info */}
+      {/* Spot Info BELOW the image */}
       <div className="spot-info">
-        <div className="spot-header">
+        <div className="spot-meta">
           <p className="spot-location">{spot.city}, {spot.state}</p>
-          <p className="spot-rating">⭐ {starRating}</p> 
+          <p className="spot-rating">⭐ {starRating}</p>
         </div>
         <p className="spot-price">${spot.price} <span className="per-night">night</span></p>
       </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSpotDetails } from "../../store/spots";
 import { fetchSpotReviews } from "../../store/reviews";
+import { RxDotFilled } from "react-icons/rx";
 import './SpotDetails.css';
 
 function SpotDetails() {
@@ -68,7 +69,8 @@ function SpotDetails() {
             <p className="price-amount">${spot.price} <span>night</span></p>
             <div className="rating-info">
                 <p className="star-rating">⭐ {spot.avgStarRating.toFixed(1)}</p>
-                <p className="review-count">({spot.numReviews} reviews)</p>
+                <span className="dot"><RxDotFilled /></span> 
+                <p className="review-count">{spot.numReviews} {spot.numReviews === 1 ? "Review" : "Reviews"}</p>
             </div>
         </div>
         <button className="reserve-button" onClick={() => alert("Feature Coming Soon...")}>
@@ -82,10 +84,13 @@ function SpotDetails() {
       <div className="reviews-section">
         <div className="reviews-header">
             <p className="average-rating">⭐ {spot.avgStarRating.toFixed(1)}</p>
-            <p className="total-reviews">({spot.numReviews} reviews)</p>
+            <span className="dot"><RxDotFilled /></span> 
+            <p className="total-reviews">{spot.numReviews} {spot.numReviews === 1 ? "Review" : "Reviews"}</p>
         </div>
         {reviews.length > 0 ? (
-          reviews.map((review) => (
+          [...reviews]
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort newest to oldest
+          .map((review) => (
             <div key={review.id} className="review">
               <p className="review-author">
                 <strong>{review.User?.firstName || "Unknown User"}</strong>

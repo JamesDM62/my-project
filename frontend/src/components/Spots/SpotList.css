@@ -4,7 +4,7 @@
   gap: 20px; /* Controls spacing between items */
   justify-content: space-around;
   padding: 20px; /* Adds space on left & right */
-  max-width: 1200px; /* Prevents excessive stretching */
+  max-width: 1000px; /* Prevents excessive stretching */
   margin: 20px auto 0; /* Centers the grid */
   width: 100%;
 }
