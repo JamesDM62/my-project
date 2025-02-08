@@ -27,6 +27,12 @@ const LoginFormModal = () => {
     );
   };
 
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(sessionActions.loginDemoUser());
+    closeModal();
+  };
+
   return (
     <div className="login-container">
         <div className="login-box">
@@ -54,6 +60,7 @@ const LoginFormModal = () => {
                 </label>
                 {errors.credential && (<p>{errors.credential}</p>)}
                 <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+                <button type="button" className="demo-login-button" onClick={handleDemoLogin}>Log in as Demo User</button>
             </form>
         </div>
     </div>
