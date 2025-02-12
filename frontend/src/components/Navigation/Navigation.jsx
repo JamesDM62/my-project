@@ -14,6 +14,13 @@ function Navigation({ isLoaded }) {
                     <span className="app-title">A Taste of Home</span>
                 </NavLink>
             </li>
+            {sessionUser && (
+                <li>
+                    <NavLink to="/spots/new" className="create-spot-button">
+                        Create a New Spot
+                    </NavLink>
+                </li>
+            )}
             {isLoaded && (
                 <li>
                     <ProfileButton user={sessionUser} />

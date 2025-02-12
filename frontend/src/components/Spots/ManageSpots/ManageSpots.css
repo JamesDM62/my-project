@@ -1,0 +1,106 @@
+.spot-thumbnail {
+    width: 100%;
+    height: auto;
+    max-height: 30vh; /* Max height relative to viewport */
+    object-fit: cover;
+}
+
+.manage-spots-container {
+    justify-content: space-between;
+    display: grid;
+    margin: 20px auto 0; /* Centers the grid */
+    padding-left: 10vh;
+}
+
+.create-spot-button-manage {
+    background-color: #4d4e4e;
+    color: white;
+    padding: 0;
+    border: 2px solid #090505;
+    border-bottom: outset black;
+    border-right: outset black;
+    border-left: unset black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: -10px;
+    width: 130px;
+    height: 22px;
+    max-width: 250px;
+    text-align: center;
+    font-style: italic;
+}
+
+.spots-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.spots-price {
+    padding: 10px 0 25px 0;
+}
+
+.star-rating {
+    font-size: 14px;
+}
+
+.spot-actions {
+    display: flex;
+    gap: 10px;
+    font-style: italic;
+    width: 130px;
+    height: 40px;
+    max-width: 250px;
+    justify-content: flex-start;
+    text-align: center;
+    align-items: center;
+}
+
+.update-spot-button {
+    border: 2px solid #090505;
+    color: white;
+    background-color: #4d4e4e;
+    border-bottom: outset black;
+    border-right: outset black;
+    border-left: unset black;
+    width: 130px;
+    height: 22px;
+    padding: 10px;
+
+    /* Center text inside the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Ensures text is not cropped */
+    text-align: center;
+    line-height: normal;
+}
+
+.delete-spot-button {
+    border: 2px solid #090505;
+    color: white;
+    background-color: #4d4e4e;
+    border-bottom: outset black;
+    border-right: outset black;
+    border-left: unset black;
+    width: 130px;
+    height: 22px;
+    padding: 10px;
+
+    /* Center text inside the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Ensures text is not cropped */
+    text-align: center;
+    line-height: normal;
+}
+
+  

@@ -1,4 +1,4 @@
-import SpotList from "../Spots/SpotList"; // Ensure you create SpotList.jsx
+import SpotList from "../Spots/SpotsList/SpotList"; // Ensure you create SpotList.jsx
 
 function LandingPage() {
   return (

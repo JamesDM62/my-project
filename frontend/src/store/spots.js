@@ -1,5 +1,6 @@
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
 const LOAD_SPOT_DETAILS = "spots/LOAD_SPOT_DETAILS";
+const SET_USER_SPOTS = "spots/SET_USER_SPOTS"
 
 export const loadSpots = (spots) => ({
   type: LOAD_SPOTS,
@@ -9,6 +10,11 @@ export const loadSpots = (spots) => ({
 export const loadSpotDetails = (spot) => ({
   type: LOAD_SPOT_DETAILS,
   spot,
+});
+
+export const setUserSpots = (spots) => ({
+  type: SET_USER_SPOTS,
+  spots,
 });
 
 export const fetchSpots = () => async (dispatch) => {
@@ -27,7 +33,18 @@ export const fetchSpotDetails = (spotId) => async (dispatch) => {
   }
 };
 
-const initialState = { allSpots: {}, singleSpot: null };
+export const fetchManageSpots = () => async (dispatch) => {
+  const response = await fetch("/api/spots/current");
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUserSpots(data.Spots));
+  } else {
+    console.error("Failed to fetch user spots");
+  }
+};
+
+const initialState = { allSpots: {}, singleSpot: null, userSpots: [] };
 
 export default function spotsReducer(state = initialState, action) {
   switch (action.type) {
@@ -35,6 +52,8 @@ export default function spotsReducer(state = initialState, action) {
       return { ...state, allSpots: action.spots };
     case LOAD_SPOT_DETAILS:
       return { ...state, singleSpot: action.spot };
+    case SET_USER_SPOTS:
+      return { ...state, userSpots: action.spots };
     default:
       return state;
   }

@@ -1,0 +1,89 @@
+/* frontend/src/components/Spots/CreateSpotForm.css */
+.create-spot-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .create-spot-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .undertitle {
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+
+  .create-spot-form label p {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+
+  }
+
+  .paragraph {
+    margin-top: 5px;
+    font-weight: lighter;
+    font-style: italic;
+  }
+  
+  .create-spot-form input,
+  .create-spot-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #090505;
+    border-radius: 5px;
+    background-color: #bfdaf8;
+  }
+
+  .create-spot-form .section-separator {
+    border-bottom: 2px solid #0e0d0d;
+    margin: 10px;
+}
+  
+  .create-spot-submit {
+    background-color: #0071c2;
+    color: white;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 0;
+    width: 120px;
+    height: 20px;
+    max-width: 250px;
+    text-align: center;
+  }
+  
+  .create-spot-submit:hover {
+    background-color: #005fa3;
+  }
+  
+  .errors {
+    color: red;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .lat-long-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add space between the two inputs */
+  }
+  
+  .lat-long-container label {
+    flex: 1; /* Ensures both inputs take equal width */
+  }
+
+  .comma {
+    font-size: 1.5rem; /* Adjust size as needed */
+    margin-top: 10px; /* Align with input box vertically */
+  }
+  

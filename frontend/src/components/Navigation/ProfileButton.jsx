@@ -41,6 +41,13 @@ function ProfileButton({ user }) {
         closeMenu();
         navigate("/");
       };
+
+      // ✅ Redirect to home after successful signup/login
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
   
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   
@@ -54,6 +61,19 @@ function ProfileButton({ user }) {
             <>
               <li>Hello, {user.firstName}</li>
               <li>{user.email}</li>
+              <div className="dropdown-divider"></div>
+              <li>
+                <button
+                  className="manage-spots-button"
+                  onClick={() => {
+                    closeMenu();
+                    navigate("/spots/current");
+                  }}
+                >
+                  Manage Spots
+                </button>
+              </li>
+              <div className="dropdown-divider"></div>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>

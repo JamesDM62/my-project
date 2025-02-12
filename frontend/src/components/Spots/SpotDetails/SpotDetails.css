@@ -4,6 +4,7 @@
     margin: 0 auto; /* Center the content */
     font-family: Arial, sans-serif;
     padding: 20px;
+    position: relative;
 }
   
   /* Header Section */
@@ -47,6 +48,7 @@
     grid-template-columns: 1fr 1fr; /* Main image and smaller images side-by-side */
     gap: 10px;
     margin-bottom: 20px;
+    
 }
 
 .main-image img {
@@ -90,9 +92,17 @@
 }
 
 .spot-description {
-  margin-top: 5px;
-}
-  
+  max-width: 500px; /* Limits width */
+  margin-right: auto; /* Ensures it doesn’t expand into the reserve button */
+  padding-right: 10px; /* Gives space between text and the reserve button */
+  word-wrap: break-word;
+  font-style: italic;
+  font-size: 16px;
+  color: #333;
+  padding-top: 10px;
+  padding-bottom: 30px;
+} 
+
   /* Reserve Button */
   .reserve-button {
     padding: 10px 20px;
@@ -105,7 +115,7 @@
     border-radius: 5px;
     border-bottom: outset black;
     cursor: pointer;
-    margin-top: auto;
+    margin-top: 10px;
   }
 
 .reserve-button-container {
@@ -115,8 +125,8 @@
     flex-direction: column; /* Stack price/rating and button vertically */
     align-items: flex-end; /* Align all elements to the far right */
     gap: 0; /* Space between price/rating and the button */
-    margin-top: -80px; /* Space above the reserve button container */
-    margin-bottom: 10px;
+    margin-top: -90px; /* Space above the reserve button container */
+    margin-bottom: 50px;
 
     border: 2px solid; /* Light gray border for the box */
     border-radius: 8px; /* Rounded corners */
@@ -124,6 +134,7 @@
     width: 100%; /* Full width of the container */
     max-width: 300px; /* Limit the width of the box */
 }
+
 
 .price-and-rating {
     display: flex;
@@ -217,7 +228,7 @@
     gap: 10px;
     margin-top: 10px;
     max-width: 300px;
-    width: 100%;
+    width: 100%;;
   }
   
   .price-and-rating {
@@ -236,6 +247,7 @@
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
+    
   }
   
   .reserve-button:hover {
@@ -341,7 +353,7 @@
 }
 
 .review-text{
-  padding-top: 10px;
+  padding-top: 30px;
 }
   
 .review {
@@ -368,5 +380,5 @@
 
 .dot {
   font-size: 14px;
-  margin-bottom: 17px;
+  margin-bottom: 0;
 }

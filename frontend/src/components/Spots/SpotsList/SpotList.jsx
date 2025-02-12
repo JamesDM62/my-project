@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSpots } from "../../store/spots"; // Ensure you create this in Redux
-import SpotCard from "./SpotCard"; // You will create this next
+import { fetchSpots } from "../../../store/spots"; // Ensure you create this in Redux
+import SpotCard from "../SpotCard/SpotCard"; // You will create this next
 import "./SpotList.css"; // Create this file for styling
 
 function SpotList() {

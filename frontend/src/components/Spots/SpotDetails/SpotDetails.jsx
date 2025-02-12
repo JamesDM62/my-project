@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchSpotDetails } from "../../store/spots";
-import { fetchSpotReviews } from "../../store/reviews";
+import { fetchSpotDetails } from "../../../store/spots";
+import { fetchSpotReviews } from "../../../store/reviews";
 import { RxDotFilled } from "react-icons/rx";
 import './SpotDetails.css';
 
@@ -102,7 +102,7 @@ function SpotDetails() {
             </div>
           ))
         ) : (
-          <p>No reviews yet.</p>
+          <p className="review-text">No reviews yet.</p>
         )}
       </div>
     </div>
