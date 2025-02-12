@@ -46,11 +46,11 @@ module.exports = {
       },
       lat: {
         type: Sequelize.DECIMAL(9, 6),
-        allowNull: false,
+        allowNull: true,
       },
       lng: {
         type: Sequelize.DECIMAL(9, 6),
-        allowNull: false,
+        allowNull: true,
       },
       price: {
         type: Sequelize.DECIMAL(10, 2),
@@ -71,7 +71,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     options.tableName = "Spots";
-    await queryInterface.dropTable('my_project_schema.Reviews');
+    // await queryInterface.dropTable('my_project_schema.Reviews');
     // await queryInterface.removeConstraint('my_project_schema.Reviews', 'Reviews_spotId_fkey', options);
     return queryInterface.dropTable(options);
   }
