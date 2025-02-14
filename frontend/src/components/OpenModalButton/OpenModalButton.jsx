@@ -3,18 +3,19 @@ import { useModal } from '../../context/Modal';
 function OpenModalButton({
     modalComponent, 
     buttonText, 
-    onButtonCLick, 
-    onModalClose
+    onButtonClick, 
+    onModalClose,
+    className
 }) {
     const { setModalContent, setOnModalClose} = useModal();
 
     const onClick = () => {
         if (onModalClose) setOnModalClose(onModalClose);
         setModalContent(modalComponent);
-        if (typeof onButtonCLick === "function") onButtonCLick();
+        if (typeof onButtonClick === "function") onButtonClick();
     };
 
-    return <button onClick={onClick}>{buttonText}</button>;
+    return <button className={className} onClick={onClick}>{buttonText}</button>;
 } 
 
 

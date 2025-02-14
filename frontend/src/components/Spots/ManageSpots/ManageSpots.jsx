@@ -17,6 +17,12 @@ function ManageSpots() {
     return (
       <div className="manage-spots-container">
         <h1>Your Spots</h1>
+        <button
+        className="create-spot-button-manage"
+        onClick={() => navigate("/spots/new")}
+        >
+          Create a New Spot
+        </button>
         <p>No spots found. Create one now!</p>
       </div>
     );
@@ -24,7 +30,7 @@ function ManageSpots() {
 
   return (
     <div className="manage-spots-container">
-      <h1>Manage Your Spots</h1>
+      <h1>Manage Spots</h1>
       <button
         className="create-spot-button-manage"
         onClick={() => navigate("/spots/new")}
@@ -33,7 +39,11 @@ function ManageSpots() {
       </button>
       <div className="spots-grid">
         {spots.map((spot) => (
-          <>
+          <div
+            key={spot.id} 
+            className="spot-item" // ✅ (Optional) Add this for styling, but kept your structure
+            onClick={() => navigate(`/spots/${spot.id}`)}
+          >
             <img
               className="spot-thumbnail"
               src={spot.previewImage || "https://via.placeholder.com/300"}
@@ -49,13 +59,17 @@ function ManageSpots() {
             <div className="spot-actions">
               <button
                 className="update-spot-button"
-                onClick={() => navigate(`/spots/${spot.id}/edit`)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(`/spots/${spot.id}/edit`);
+                }}
               >
                 Update
               </button>
               <button
                 className="delete-spot-button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   if (window.confirm("Are you sure you want to delete this spot?")) {
                     // Dispatch delete action here
                   }
@@ -64,7 +78,7 @@ function ManageSpots() {
                 Delete
               </button>
             </div>
-          </>
+          </div>
         ))}
       </div>
     </div>

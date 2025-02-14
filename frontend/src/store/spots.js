@@ -44,6 +44,16 @@ export const fetchManageSpots = () => async (dispatch) => {
   }
 };
 
+export const updateSpotRating = (spotId) => async (dispatch) => {
+  const response = await fetch(`/api/spots/${spotId}`);
+
+  if (response.ok) {
+      const updatedSpot = await response.json();
+      dispatch(loadSpotDetails(updatedSpot)); // ✅ Update Redux state for the spot
+  }
+};
+
+
 const initialState = { allSpots: {}, singleSpot: null, userSpots: [] };
 
 export default function spotsReducer(state = initialState, action) {

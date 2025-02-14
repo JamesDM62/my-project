@@ -1,0 +1,117 @@
+h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    width: 100;
+}
+
+.star-rating span:last-child {
+    font-size: 22px; /* Smaller font size for "Stars" text */
+    font-weight: normal; /* Optional: Adjusts weight if needed */
+}
+
+.star {
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 28px; /* Ensures stars are clearly visible */
+    margin-top: 15px;
+}
+
+/* Hollow Star Default */
+.empty-star {
+    color: #ffffff; /* Light gray for hollow effect */
+    -webkit-text-stroke: 2px black; /* Adds a black outline */
+    font-size: 28px; /* Ensures it remains the same size */
+}
+
+/* Dim when hovered */
+.star:hover {
+    color: #ffc107; /* Light gold when hovering */
+}
+
+/* Solid gold when clicked */
+.filled-star {
+    color: #ffcc00; /* Brighter yellow when selected */
+}
+
+.review-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.review-box {
+    position: fixed;
+    background: white;
+    width: 100%; /* Responsive width */
+    max-width: 450px; /* Keeps it from being too wide */
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border: 3px solid #0a0505;
+    text-align: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.review-textarea {
+    width: 100%; /* Ensures it scales correctly */
+    height: 140px; /* Matches the correct proportion */
+    resize: none;
+    padding: 12px;
+    font-size: 14px;
+    border: 3px solid #0a0505;
+    border-radius: 5px;
+    background-color: #afd4fc;
+    box-sizing: border-box;
+}
+
+
+.submit-review-button {
+    width: 40vh;
+    max-width: 100%;
+    font-size: 18px;
+    font-weight: lighter;
+    background-color: red;
+    color: rgb(255, 255, 255);
+    border: 4px solid black;
+    box-shadow: 6px 8px 10px rgb(123, 120, 120);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.submit-review-button:disabled {
+    background-color: #ffffff;
+    cursor: not-allowed;
+    color: rgb(123, 120, 120);
+    border: 2px solid darkgray;
+}
+
+.submit-review-button:hover {
+    background-color: darkred;
+}
+
+.error-review {
+    color: red; /* Makes error messages clearly visible */
+    font-size: 14px; /* Keeps it readable but not too large */
+    font-weight: bold; /* Emphasizes the message */
+    text-align: center; /* Centers the text in the modal */
+    margin-bottom: 10px; /* Adds space between errors and textarea */
+}

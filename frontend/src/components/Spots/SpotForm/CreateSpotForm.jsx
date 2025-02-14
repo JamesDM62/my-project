@@ -1,10 +1,17 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { csrfFetch } from "../../../store/csrf";
+import { fetchSpotDetails } from "../../../store/spots";
 import "./SpotForm.css";
 
 function CreateSpotForm() {
+    const {spotId} = useParams();
+    const dispatch = useDispatch();
     const navigate = useNavigate("");
+    const existingSpot = useSelector((state) => state.spots.singleSpot);
+
+    //form state
     const [country, setCountry] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -20,6 +27,28 @@ function CreateSpotForm() {
     const [image3, setImage3] = useState("");
     const [image4, setImage4] = useState("");
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        if (spotId) {
+            dispatch(fetchSpotDetails(spotId));
+        }
+    }, [dispatch, spotId]);
+
+     // ✅ Prefill form when spot details are loaded
+     useEffect(() => {
+        if (existingSpot && spotId) {
+            setCountry(existingSpot.country || "");
+            setAddress(existingSpot.address || "");
+            setCity(existingSpot.city || "");
+            setState(existingSpot.state || "");
+            setLatitude(existingSpot.latitude || "");
+            setLongitude(existingSpot.longitude || "");
+            setDescription(existingSpot.description || "");
+            setName(existingSpot.name || "");
+            setPrice(existingSpot.price || "");
+            setPreviewImage(existingSpot.previewImage || "");
+        }
+    }, [existingSpot, spotId]);
     
     const text = "Catch guests' attention with a spot title that highlights what makes your place special."
     const text2 = "Where's your place located?"
@@ -53,7 +82,7 @@ function CreateSpotForm() {
         return;
     }
 
-        const newSpot = {
+        const spotData = {
             country,
             address,
             city,
@@ -67,10 +96,10 @@ function CreateSpotForm() {
         };
 
         try {
-            const response = await csrfFetch('/api/spots', {
-                method: "POST",
+            const response = await csrfFetch(spotId ? `/api/spots/${spotId}/edit` : '/api/spots', {
+                method: spotId ? "PUT" : "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(newSpot),
+                body: JSON.stringify(spotData),
             });
 
             if (response.ok) {
@@ -87,7 +116,7 @@ function CreateSpotForm() {
 
     return (
         <div className="create-spot-container">
-            <h1>Create a New Spot</h1>
+            <h1>{spotId ? "Update your Spot" : "Create a New Spot"}</h1>
 
             <h2 className="undertitle">{text2}</h2>
             <p className="paragraph">Guests will only get your exact address once they booked a reservation.</p>
@@ -232,7 +261,7 @@ function CreateSpotForm() {
                         placeholder="Preview Image URL"
                         value={previewImage}
                         onChange={(e) => setPreviewImage(e.target.value)}
-                        required
+                        required={!spotId}
                     />
                 </label>
 
@@ -274,8 +303,8 @@ function CreateSpotForm() {
 
                 <div className="section-separator"></div>
 
-                <button type="submit" className="create-spot-submit">
-                    Create Spot
+                <button type="submit" className={`create-spot-submit ${spotId ? "update-mode" : ""}`}>
+                    {spotId ? "Update your Spot" : "Create Spot"}
                 </button>
             </form>
         </div>

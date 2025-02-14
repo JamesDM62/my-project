@@ -1,346 +1,162 @@
-/* Container: Maximum Width of 1000px */
+/* ========== GENERAL CONTAINER STYLES ========== */
 .spot-details-container {
-    max-width: 1000px; /* Maximum width */
-    margin: 0 auto; /* Center the content */
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    position: relative;
+  max-width: 1000px; /* Maximum width */
+  margin: 0 auto; /* Center the content */
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  position: relative;
 }
-  
-  /* Header Section */
+
+/* ========== HEADER SECTION ========== */
 .spot-header {
-    display: flex; /* Flexbox layout */
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align to the left */
-    margin-bottom: 20px;
-    padding: 10px 0; /* Add spacing around the header */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.spot-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
 .spot-location {
-    font-size: 1.2rem; /* Slightly smaller font */
-    margin: 0; /* No extra margins */
-}
-  
-.spot-header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
-.spot-name {
-    font-size: 2.5rem; /* Larger font size */
-    font-weight: bold; /* Bold for emphasis */
-    margin-bottom: 5px; /* Add spacing below the name */
-}
-  
-.spot-header p {
-    margin: 5px 0;
-    font-size: 1rem;
-}
-  
-.price {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
+/* ========== IMAGES SECTION ========== */
 .spot-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Main image and smaller images side-by-side */
-    gap: 10px;
-    margin-bottom: 20px;
-    
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Main image and smaller images side-by-side */
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.main-image img {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-}
-
-  
 .main-image {
-    flex: 1; /* Takes 50% width */
+  flex: 1; /* Takes 50% width */
 }
-  
+
 .main-image img {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
 }
-  
+
 .other-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two images per row */
   gap: 10px;
 }
-  
+
 .other-images img {
-    width: 100%;
-    height: 240px; /* Ensure smaller images are equal height */
-    object-fit: cover;
-    border-radius: 5px; /* Optional for rounded corners */
+  width: 100%;
+  height: 240px; /* Ensure smaller images are equal height */
+  object-fit: cover;
+  border-radius: 5px; /* Optional for rounded corners */
 }
-  
-  /* Host Info */
+
+/* ========== HOST INFO SECTION ========== */
 .host-info {
-    text-align: left; /* Align text to the far right */
-    margin-top: 10px; /* Add some spacing below the images */
-    font-size: 1.2rem;
-    font-style: italic; /* Optional: Makes the text look distinct */
+  text-align: left;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-style: italic;
 }
 
 .spot-description {
-  max-width: 500px; /* Limits width */
-  margin-right: auto; /* Ensures it doesn’t expand into the reserve button */
-  padding-right: 10px; /* Gives space between text and the reserve button */
+  max-width: 500px;
+  margin-right: auto;
+  padding-right: 10px;
   word-wrap: break-word;
   font-style: italic;
   font-size: 16px;
   color: #333;
   padding-top: 10px;
   padding-bottom: 30px;
-} 
+}
 
-  /* Reserve Button */
-  .reserve-button {
-    padding: 10px 20px;
-    width: 100%;
-    max-width: 300px;
-    font-size: 1rem;
-    background-color: red;
-    color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    border-bottom: outset black;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-
+/* ========== RESERVE BUTTON SECTION ========== */
 .reserve-button-container {
-    margin-left: auto;
-    text-align: right; /* Aligns the content to the right */
-    display: flex;
-    flex-direction: column; /* Stack price/rating and button vertically */
-    align-items: flex-end; /* Align all elements to the far right */
-    gap: 0; /* Space between price/rating and the button */
-    margin-top: -90px; /* Space above the reserve button container */
-    margin-bottom: 50px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  margin-bottom: 50px;
 
-    border: 2px solid; /* Light gray border for the box */
-    border-radius: 8px; /* Rounded corners */
-    padding: 15px; /* Inner padding for content */
-    width: 100%; /* Full width of the container */
-    max-width: 300px; /* Limit the width of the box */
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 300px;
 }
 
+.reserve-button {
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 1rem;
+  background-color: red;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  border-bottom: outset black;
+  cursor: pointer;
+  margin-top: 10px;
+}
 
+.reserve-button:hover {
+  background-color: #0056b3;
+}
+
+/* ========== HOST INFO & RESERVE BUTTON POSITIONING ========== */
+.host-info-reserve-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+/* ========== PRICE & RATING SECTION ========== */
 .price-and-rating {
-    display: flex;
-    justify-content: space-between; /* Price on the left, rating on the right */
-    width: 100%; /* Take the full width of the container */
-    max-width: 300px; /* Limit the width for alignment */
-  }
-  
-  .price {
-    font-size: 1.4rem; /* Slightly larger font for price */
-    font-weight: bold;
-    color: #222; /* Darker color for emphasis */
-  }
-  
-  .price span {
-    font-size: 1rem; /* Smaller font for "/ night" */
-    color: #555; /* Lighter color for contrast */
-  }
-  
-  .rating-info {
-    display: flex; /* Use flexbox for horizontal alignment */
-    gap: 5px; /* Add space between the star rating and review count */
-    align-items: center; /* Align vertically in case of differing font sizes */
-  }
-  
-  .star-rating {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  .review-count {
-    font-size: 0.9rem;
-  }
-
-
-
-
-  
-.reserve-button:hover {/* Container: Maximum Width of 1000px */
-  .spot-details-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  
-  /* Header Section */
-  .spot-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    padding: 10px 0;
-  }
-  
-  .spot-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .spot-location {
-    font-size: 1.2rem;
-  }
-  
-  .spot-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
-    gap: 10px;
-  }
-  
-  .main-image img {
-    width: 100%;
-    height: auto;
-    max-height: 50vh; /* Max height relative to viewport */
-    object-fit: cover;
-  }
-  
-  .other-images img {
-    width: 100%;
-    height: auto;
-    max-height: 30vh;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  /* Reserve Button */
-  .reserve-button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-    margin-top: 10px;
-    max-width: 300px;
-    width: 100%;;
-  }
-  
-  .price-and-rating {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  
-  .reserve-button {
-    padding: 10px 20px;
-    width: 100%;
-    font-size: 1rem;
-    background-color: red;
-    color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    
-  }
-  
-  .reserve-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Reviews Section */
-  .reviews-section {
-    margin-top: 20px;
-  }
-  
-  .reviews-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .review {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .review-author {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  .review-date {
-    font-size: 0.9rem;
-    color: gray;
-    margin-bottom: 10px;
-  }
-  
-  .review-text {
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-  
-  /* Divider */
-  .divider {
-    margin: 20px 0;
-    height: 1px;
-    background: #ccc;
-  }
-  
-  /* Responsive Media Queries */
-  @media (max-width: 768px) {
-    .spot-details-container {
-      padding: 10px;
-    }
-  
-    .spot-header h1 {
-      font-size: 2rem;
-    }
-  
-    .spot-location {
-      font-size: 1rem;
-    }
-  
-    .spot-images {
-      grid-template-columns: 1fr; /* Stack images vertically */
-    }
-  
-    .reserve-button-container {
-      align-items: center;
-    }
-  
-    .price-and-rating {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .reviews-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-  
-    background-color: #0056b3;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
 }
-  
-  /* Reviews Section */
+
+.price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.price span {
+  font-size: 1rem;
+  color: #555;
+}
+
+.rating-info {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.star-rating {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.review-count {
+  font-size: 0.9rem;
+}
+
+/* ========== REVIEWS SECTION ========== */
 .reviews-section {
-    margin-top: 10px;
-}
-  
-.reviews-section h2 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
+  margin-top: 10px;
 }
 
 .reviews-header {
@@ -349,36 +165,97 @@
   gap: 10px;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: -15px;
+  margin-bottom: 15px;
 }
 
-.review-text{
+.post-review-button {
+  background-color: #4d4e4e; /* Matches the gray button color */
+  color: white; /* White text */
+  font-size: 14px;
+  font-style: italic;
+  padding: 10px 20px;
+  border: 2px solid black; /* Black border */
+  border-bottom: 4px outset black; /* Creates the raised effect */
+  box-shadow: 3px 3px 0px black; /* Thick black box shadow */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 5px 12px;
+  width: 150px;
+  height: 32px;
+  text-align: center;
+}
+
+.post-review-button:hover {
+  background-color: #5a5b5b; /* Slightly lighter gray on hover */
+}
+
+.post-review-button:active {
+  box-shadow: none; /* Removes shadow on click for pressed effect */
+  transform: translate(2px, 2px); /* Moves the button down slightly */
+}
+
+
+.review-text {
   padding-top: 30px;
 }
-  
+
 .review {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-  
-.review strong {
-    font-size: 1rem;
-}
-  
-.review p {
-    margin: 5px 0;
-    font-size: 0.9rem;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
+.review strong {
+  font-size: 1rem;
+}
+
+.review p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* ========== DIVIDERS & SPACING ========== */
 .divider {
-  margin: 20px 0; /* Adds spacing above and below the line */
-  border: 0;       /* Removes the default border style */
-  height: 1px;     /* Sets the height of the line */
-  background: #ccc; /* Sets the line color */
+  margin: 20px 0;
+  border: 0;
+  height: 1px;
+  background: #ccc;
 }
 
 .dot {
   font-size: 14px;
   margin-bottom: 0;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .spot-details-container {
+      padding: 10px;
+  }
+
+  .spot-header h1 {
+      font-size: 2rem;
+  }
+
+  .spot-location {
+      font-size: 1rem;
+  }
+
+  .spot-images {
+      grid-template-columns: 1fr; /* Stack images vertically */
+  }
+
+  .reserve-button-container {
+      align-items: center;
+  }
+
+  .price-and-rating {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .reviews-header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
 }
