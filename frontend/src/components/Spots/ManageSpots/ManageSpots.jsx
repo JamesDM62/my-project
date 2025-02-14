@@ -53,7 +53,10 @@ function ManageSpots() {
               <p className="city-state">
                 {spot.city}, {spot.state}
               </p>
-              <p className="star-rating">⭐ {spot.avgRating ? spot.avgRating.toFixed(1) : "No Rating"}</p>
+              <p className="star-rating">⭐ {spot.avgRating !== undefined && spot.avgRating !== null
+                ? Number(spot.avgRating).toFixed(1)
+              : "No Rating"}
+              </p>
             </div>
               <p className="spots-price">${spot.price} per night</p>
             <div className="spot-actions">
