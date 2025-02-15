@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { deleteSpot } from '../../store/spots';
+import { deleteSpot, fetchManageSpots } from '../../store/spots';
 import { useModal } from '../../context/Modal';
+
 import './DeleteSpot.css';
 
 function DeleteSpotModal({ spotId }) {
@@ -9,6 +10,7 @@ function DeleteSpotModal({ spotId }) {
 
     const handleDelete = async () => {
         await dispatch(deleteSpot(spotId));
+        await dispatch(fetchManageSpots());
         closeModal();
     };
 

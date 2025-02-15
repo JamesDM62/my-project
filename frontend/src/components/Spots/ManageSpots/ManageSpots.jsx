@@ -78,11 +78,14 @@ function ManageSpots() {
               >
                 Update
               </button>
+              <div className="delete-button-wrapper" onClick={(e) => e.stopPropagation()}>
                 <OpenModalButton
                   buttonText="Delete"
                   className="delete-spot-button"
                   modalComponent={<DeleteSpotModal spotId={spot.id} />}
+                  onClick={(e) => e.stopPropagation()}
                 />
+              </div>  
             </div>
           </div>
         ))}

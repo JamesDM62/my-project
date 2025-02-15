@@ -110,6 +110,11 @@
     align-self: flex-start;
 }
 
+.delete-button-wrapper {
+    display: flex;
+    align-items: center;
+}
+
 .update-spot-button,
 .delete-spot-button {
     border: 2px solid #090505;
@@ -118,8 +123,8 @@
     border-bottom: outset black;
     border-right: outset black;
     border-left: unset black;
-    width: 130px;
-    height: 22px;
+    width: 100px;
+    height: 30px;
     padding: 10px;
 
     /* Center text inside the button */
