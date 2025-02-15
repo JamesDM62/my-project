@@ -5,6 +5,7 @@ import { fetchSpotDetails } from "../../../store/spots";
 import { fetchSpotReviews } from "../../../store/reviews";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import ReviewFormModal from "../../ReviewFormModal/ReviewFormModal";
+import DeleteReviewModal from "../../DeleteReviewModal/DeleteReviewModal";
 import { RxDotFilled } from "react-icons/rx";
 import './SpotDetails.css';
 
@@ -120,6 +121,14 @@ function SpotDetails() {
                 {new Date(review.createdAt).toLocaleDateString('en-US', {year: 'numeric', month: 'long'})}
               </p>
               <p className="review-text">{review.review}</p>
+              {/* ✅ Delete Button Only for Logged-in User */}
+              {review.userId === user?.id && (
+                <OpenModalButton
+                  buttonText="Delete"
+                  className="delete-review-button"
+                  modalComponent={<DeleteReviewModal reviewId={review.id} spotId={spotId} />}
+                />
+              )}
             </div>
           ))
         ) : (
