@@ -49,21 +49,11 @@ function SpotDetails() {
             <div className="main-image">
                 <img src={imageUrl} alt={spot.name} />
             </div>
-        {/* <div className="other-images">
+        <div className="other-images">
           {spot.SpotImages.slice(1, 5).map((image) => (
             <img key={image.id} src={image.url} alt={`${spot.name} additional`} />
           ))}
-        </div> */}
-            <div className="other-images">
-                { [...Array(4)].map((_, idx) => (
-                <img
-                    key={idx}
-                    src={`https://source.unsplash.com/random/400x400?sig=${idx}`}
-                    alt={`Placeholder ${idx + 1}`}
-                />
-                ))}
-            </div>
-
+        </div>
         </div>
   
       {/* Host Info */}

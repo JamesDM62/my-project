@@ -68,7 +68,9 @@ function CreateSpotForm() {
     if (!description || description.length < 30)
         validationErrors.description = "Description needs 30 or more characters";
     if (!price || price <= 0) validationErrors.price = "Price per day must be a positive number";
-    if (!previewImage) validationErrors.previewImage = "Preview Image URL is required";
+    if (!previewImage && !spotId) {
+        validationErrors.previewImage = "Preview Image URL is required";
+    }    
 
     // Latitude & Longitude validation (only if provided)
     if (latitude !== "" && (latitude < -90 || latitude > 90)) 
@@ -82,36 +84,56 @@ function CreateSpotForm() {
         return;
     }
 
-        const spotData = {
-            country,
-            address,
-            city,
-            state,
-            latitude: latitude || null,
-            longitude: longitude || null,
-            description,
-            name,
-            price,
-            images: [previewImage, image1, image2, image3, image4].filter((url) => url),
-        };
+    const spotData = {
+        country,
+        address,
+        city,
+        state,
+        latitude: latitude || null,
+        longitude: longitude || null,
+        description,
+        name,
+        price,
+        images: [previewImage, image1, image2, image3, image4].filter((url) => url),
+    };
 
-        try {
-            const response = await csrfFetch(spotId ? `/api/spots/${spotId}/edit` : '/api/spots', {
-                method: spotId ? "PUT" : "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(spotData),
-            });
+    try {
+        const response = await csrfFetch(spotId ? `/api/spots/${spotId}` : '/api/spots', {
+            method: spotId ? "PUT" : "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(spotData),
+        });
 
-            if (response.ok) {
-                const createdSpot = await response.json();
-                navigate(`/spots/${createdSpot.id}`);
-            } else {
-                const data = await response.json();
-                setErrors(data.errors || ["Failed to create spot."]);
-            }
-        } catch (err) {
-            setErrors(["Failed to create spot."]);
+        if (!response.ok) {
+            const data = await response.json();
+            setErrors(data.errors || ["Failed to create/update spot."]);
+            return;
         }
+    
+        const createdSpot = await response.json();
+            
+        // Handle image uploads (NEW spots and UPDATING existing images)
+        const imageUrls = [previewImage, image1, image2, image3, image4].filter(url => url);
+
+        await Promise.all(
+            imageUrls.map((url, index) =>
+                csrfFetch(`/api/spots/${createdSpot.id}/images`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        url,
+                        previewImage: index === 0, // First image should be the preview
+                    }),
+                })
+            )
+        );
+    
+        // Redirect to the spot's details page after successful update
+        navigate(`/spots/${createdSpot.id}`);
+    
+    } catch (err) {
+        setErrors(["Failed to create/update spot."]);
+    }
     };
 
     return (

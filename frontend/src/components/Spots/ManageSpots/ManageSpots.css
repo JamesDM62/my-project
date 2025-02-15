@@ -1,17 +1,78 @@
-.spot-thumbnail {
-    width: 100%;
-    height: auto;
-    max-height: 30vh; /* Max height relative to viewport */
-    object-fit: cover;
+/* ================= GENERAL CONTAINER STYLES ================= */
+.manage-spots-header {
+    padding-left: 12px !important;
 }
 
 .manage-spots-container {
-    justify-content: space-between;
-    display: grid;
-    margin: 20px auto 0; /* Centers the grid */
-    padding-left: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns everything to the left */
+    width: 95vw;
+    margin: 20px auto 0;
+    padding-left: 40px; /* Adjust this to match the title */
 }
 
+
+
+/* ================= SPOT GRID LAYOUT ================= */
+.spots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 0 !important;
+}
+
+
+/* ================= SPOT ITEM STYLES ================= */
+.spot-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.spot-item:hover {
+    transform: scale(1.02);
+}
+
+/* ================= SPOT IMAGE STYLES ================= */
+.spot-thumbnail {
+    width: 100%;
+    height: 200px; /* Fixed height for uniformity */
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* ================= SPOT INFO ================= */
+.spots-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.spots-price {
+    padding: 10px 0 25px 0;
+    align-self: start;
+    font-weight: bold;
+}
+
+.star-rating {
+    font-size: 14px;
+}
+
+.new-rating {
+    font-size: 14px !important;
+  color: red;
+  font-weight: bold !important;
+}
+  
+
+/* ================= BUTTON STYLES ================= */
 .create-spot-button-manage {
     background-color: #4d4e4e;
     color: white;
@@ -35,20 +96,7 @@
     font-style: italic;
 }
 
-.spots-info {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.spots-price {
-    padding: 10px 0 25px 0;
-}
-
-.star-rating {
-    font-size: 14px;
-}
-
+/* ================= ACTION BUTTONS ================= */
 .spot-actions {
     display: flex;
     gap: 10px;
@@ -59,29 +107,10 @@
     justify-content: flex-start;
     text-align: center;
     align-items: center;
+    align-self: flex-start;
 }
 
-.update-spot-button {
-    border: 2px solid #090505;
-    color: white;
-    background-color: #4d4e4e;
-    border-bottom: outset black;
-    border-right: outset black;
-    border-left: unset black;
-    width: 130px;
-    height: 22px;
-    padding: 10px;
-
-    /* Center text inside the button */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* Ensures text is not cropped */
-    text-align: center;
-    line-height: normal;
-}
-
+.update-spot-button,
 .delete-spot-button {
     border: 2px solid #090505;
     color: white;
@@ -103,4 +132,25 @@
     line-height: normal;
 }
 
+@media (min-width: 1100px) {
+    .spots-grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 95vw;
+      padding: 0 40px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .spots-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensures wrapping */
+      max-width: 100vw;
+      padding: 0 20px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .spots-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Single column layout */
+    }
+}
   

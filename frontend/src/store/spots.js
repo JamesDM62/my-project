@@ -1,6 +1,7 @@
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
 const LOAD_SPOT_DETAILS = "spots/LOAD_SPOT_DETAILS";
-const SET_USER_SPOTS = "spots/SET_USER_SPOTS"
+const SET_USER_SPOTS = "spots/SET_USER_SPOTS";
+const DELETE_SPOT = "spots/DELETE_SPOT";
 
 export const loadSpots = (spots) => ({
   type: LOAD_SPOTS,
@@ -15,6 +16,11 @@ export const loadSpotDetails = (spot) => ({
 export const setUserSpots = (spots) => ({
   type: SET_USER_SPOTS,
   spots,
+});
+
+export const removeSpot = (spotId) => ({
+  type: DELETE_SPOT,
+  spotId,
 });
 
 export const fetchSpots = () => async (dispatch) => {
@@ -44,6 +50,18 @@ export const fetchManageSpots = () => async (dispatch) => {
   }
 };
 
+export const deleteSpot = (spotId) => async (dispatch) => {
+  const response = await fetch(`/api/spots/${spotId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(removeSpot(spotId));
+  } else {
+    console.error("Failed to delete spot");
+  }
+};
+
 export const updateSpotRating = (spotId) => async (dispatch) => {
   const response = await fetch(`/api/spots/${spotId}`);
 
@@ -64,6 +82,14 @@ export default function spotsReducer(state = initialState, action) {
       return { ...state, singleSpot: action.spot };
     case SET_USER_SPOTS:
       return { ...state, userSpots: action.spots };
+    case DELETE_SPOT:
+      return { 
+        ...state,
+        allSpots: Object.fromEntries(
+          Object.entries(state.allSpots).filter(([id]) => id !== String(action.spotId))
+        ),
+        userSpots: state.userSpots.filter((spot) => spot.id !== action.spotId),
+      };
     default:
       return state;
   }
