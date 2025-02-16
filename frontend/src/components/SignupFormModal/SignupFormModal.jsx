@@ -18,26 +18,8 @@ const SignupFormModal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        let validationErrors = {};
-    
-        if (!firstName) validationErrors.firstName = "Must enter a first name.";
-        if (!lastName) validationErrors.lastName = "Must enter a last name.";
-        if (!email) validationErrors.email = "Please provide a valid email.";
-        if (!username) validationErrors.username = "Please provide a username with at least 4 characters.";
-        if (username.length < 4) validationErrors.username = "Username must be at least 4 characters.";
-        if (!password) validationErrors.password = "Password must be 6 characters or more.";
-        if (password.length < 6) validationErrors.password = "Password must be at least 6 characters.";
-        if (password !== confirmPassword) validationErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
-    
-        // If any errors exist, set them and stop submission
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-    
-        // If no errors, attempt signup
         try {
-            await dispatch(
+            const response = await dispatch(
                 sessionActions.signup({
                     email,
                     username,
@@ -46,14 +28,17 @@ const SignupFormModal = () => {
                     password
                 })
             );
-            closeModal();
+            if (response.ok) {
+                closeModal();
+            }
         } catch (res) {
             const data = await res.json();
             if (data?.errors) {
-                setErrors((prevErrors) => ({ ...prevErrors, ...data.errors }));
+                setErrors(data.errors); // ✅ Directly setting all backend errors
             }
         }
     };
+    
     
 
     return(
