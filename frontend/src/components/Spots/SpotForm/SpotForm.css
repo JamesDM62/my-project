@@ -19,6 +19,7 @@
 .undertitle {
   font-size: 1.2rem;
   font-style: italic;
+  margin-bottom: 8px;
 }
   
 .create-spot-form label p {
@@ -27,7 +28,8 @@
 }
   
 .paragraph {
-  margin-top: 5px;
+  
+  margin-bottom: 15px;
   font-weight: lighter;
   font-style: italic;
 }
