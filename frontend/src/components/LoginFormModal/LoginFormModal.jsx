@@ -60,7 +60,7 @@ const LoginFormModal = () => {
                 </label>
                 {errors.credential && (<p className="error-message">{errors.credential}</p>)}
                 <button type="submit" className="login-button" disabled={credential.length < 4 || password.length < 6}>Log In</button>
-                <button type="button" className="demo-login-button" onClick={handleDemoLogin}>Demo User</button>
+                <button type="button" className="demo-login-button" onClick={handleDemoLogin}>Log in as Demo User</button>
             </form>
         </div>
     </div>
