@@ -217,6 +217,32 @@
   font-size: 0.9rem;
 }
 
+.delete-review-button {
+  border: 3px solid #090505;
+  color: white;
+  background-color: #4d4e4e;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  width: 100px;
+  height: 30px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  /* Center text inside the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Ensures text is not cropped */
+  text-align: center;
+  line-height: normal;
+}
+
+
+
 /* ========== DIVIDERS & SPACING ========== */
 .divider {
   margin: 20px 0;
