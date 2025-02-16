@@ -17,9 +17,9 @@ const SignupFormModal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        try {
-            const response = await dispatch(
+        if (password === confirmPassword) {
+            setErrors({});
+            return dispatch(
                 sessionActions.signup({
                     email,
                     username,
@@ -27,19 +27,19 @@ const SignupFormModal = () => {
                     lastName,
                     password
                 })
-            );
-            if (response.ok) {
-                closeModal();
-            }
-        } catch (res) {
-            const data = await res.json();
-            if (data?.errors) {
-                setErrors(data.errors); // ✅ Directly setting all backend errors
-            }
+            )
+                .then(closeModal)
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data?.errors) {
+                        setErrors((prevErrors) => ({ ...prevErrors, ...data.errors }));
+                    }
+                });
         }
+        return setErrors({
+            confirmPassword: "Confirm Password field must be the same as the Password field"
+        });
     };
-    
-    
 
     return(
         <div className="signup-container">
