@@ -212,3 +212,48 @@ body {
   background-color: #3d3e40; /* Blue background on hover */
   color: #fff; /* White text color on hover */
 }
+
+/* Button Container (Oval Shape) */
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 50px; /* Adjust height for oval */
+}
+
+/* Profile Icon & Lines Container */
+.profile-icon-container {
+  border: 3px solid black; /* Solid black border */
+  border-radius: 40px; /* Ensures oval shape */
+  padding: 5px 20px; /* Adjusted padding */
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px; /* Ensures spacing between icon & lines */
+}
+
+/* Menu Lines (FIXED: Now on the left side) */
+.menu-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Aligns lines to the left */
+  gap: 6px; /* Space between lines */
+}
+
+/* Individual Menu Lines */
+.menu-line {
+  width: 20px; /* Matches correct width */
+  height: 2.2px;
+  background: black;
+  border-radius: 2px;
+}
+
+/* Profile Icon */
+.profile-icon {
+  font-size: 24px; /* Adjust size */
+  color: black;
+}

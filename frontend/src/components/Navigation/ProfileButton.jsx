@@ -9,97 +9,104 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import './Navigation.css';
 
 function ProfileButton({ user }) {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [showMenu, setShowMenu] = useState(false);
-    const ulRef = useRef();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef();
 
-    const toggleMenu = (e) => {
-        e.stopPropagation();
-        setShowMenu(!showMenu);
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
     };
 
-    useEffect(() => {
-        if (!showMenu) return;
+    document.addEventListener('click', closeMenu);
 
-        const closeMenu = (e) => {
-          if (!ulRef.current.contains(e.target)) {
-            setShowMenu(false);
-          }
-        };
-    
-        document.addEventListener('click', closeMenu);
-    
-        return () => document.removeEventListener('click', closeMenu);
-      }, [showMenu]);
+    return () => document.removeEventListener('click', closeMenu);
+  }, [showMenu]);
 
-      const closeMenu = () => setShowMenu(false); 
-  
-      const logout = (e) => {
-        e.preventDefault();
-        dispatch(sessionActions.logout());
-        closeMenu();
-        navigate("/");
-      };
+  const closeMenu = () => setShowMenu(false);
 
-      // ✅ Redirect to home after successful signup/login
-    useEffect(() => {
-        if (user) {
-            navigate("/");
-        }
-    }, [user, navigate]);
-  
-    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  
-    return (
-      <div className="credentials-list">
-        <button onClick={toggleMenu}>
-          <FaUserCircle />
-        </button>
-        <ul className={ulClassName} ref={ulRef}>
-          {user ? (
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    closeMenu();
+    navigate("/");
+  };
+
+  // ✅ Redirect to home after successful signup/login
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+
+  return (
+    <div className="credentials-list">
+      <button className="profile-button" onClick={toggleMenu}>
+        <div className="profile-icon-container">
+          <div className="menu-lines">
+            <span className="menu-line"></span>
+            <span className="menu-line"></span>
+            <span className="menu-line"></span>
+          </div>
+          <FaUserCircle className="profile-icon" />
+        </div>
+      </button>
+      <ul className={ulClassName} ref={ulRef}>
+        {user ? (
+          <>
+            <li>Hello, {user.firstName}</li>
+            <li>{user.email}</li>
+            <div className="dropdown-divider"></div>
+            <li>
+              <button
+                className="manage-spots-button"
+                onClick={() => {
+                  closeMenu();
+                  navigate("/spots/current");
+                }}
+              >
+                Manage Spots
+              </button>
+            </li>
+            <div className="dropdown-divider"></div>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </>
+        ) : (
+          <div className="modal-list">
             <>
-              <li>Hello, {user.firstName}</li>
-              <li>{user.email}</li>
-              <div className="dropdown-divider"></div>
-              <li>
-                <button
-                  className="manage-spots-button"
-                  onClick={() => {
-                    closeMenu();
-                    navigate("/spots/current");
-                  }}
-                >
-                  Manage Spots
-                </button>
-              </li>
-              <div className="dropdown-divider"></div>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
+              <OpenModalMenuItem
+                itemText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
             </>
-          ) : (
-            <div className="modal-list">
-              <>
-                <OpenModalMenuItem
-                  itemText="Log In"
-                  onItemClick={closeMenu}
-                  modalComponent={<LoginFormModal />}
-                />
-              </>
-              <>
-                <OpenModalMenuItem
-                  itemText="Sign Up"
-                  onItemClick={closeMenu}
-                  modalComponent={<SignupFormModal />}
-                />
-              </>
-            </div>
-          )}
-        </ul>
-      </div>
-    );
-  }
-  
+            <>
+              <OpenModalMenuItem
+                itemText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+            </>
+          </div>
+        )}
+      </ul>
+    </div>
+  );
+}
+
 
 export default ProfileButton;
