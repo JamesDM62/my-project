@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation';
 import LandingPage from './components/LandingPage/LandingPage';
 import SpotDetails from './components/Spots/SpotDetails/SpotDetails';
 import CreateSpotForm from './components/Spots/SpotForm/CreateSpotForm';
+import ManageReviews from './components/ManageReviews/ManageReviews';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as sessionActions from './store/session';
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/spots/current',
         element: <ManageSpots />,
+      },
+      {
+        path: '/reviews/current',
+        element: <ManageReviews />,
       },
     ],
   },

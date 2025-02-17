@@ -80,6 +80,18 @@ function ProfileButton({ user }) {
                 Manage Spots
               </button>
             </li>
+            <li>
+              <button
+                className="manage-reviews-button"
+                onClick={() => {
+                  alert("Feature Coming Soon...")
+                  closeMenu();
+                  // navigate("/reviews/current")
+                }}
+              >
+                Manage Reviews
+              </button>
+            </li>
             <div className="dropdown-divider"></div>
             <li>
               <button onClick={logout}>Log Out</button>

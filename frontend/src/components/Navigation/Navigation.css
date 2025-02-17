@@ -257,3 +257,16 @@ body {
   font-size: 24px; /* Adjust size */
   color: black;
 }
+
+.manage-reviews-button {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  width: 100%; /* Full width to align with other items */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: lighter;
+  margin-top: 0;
+  margin-bottom: 0;
+}

@@ -1,0 +1,105 @@
+/* ====== General Review Container ====== */
+.manage-reviews-container {
+    max-width: 800px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* Align the heading to the left */
+.manage-reviews-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/*======= Reviews Grid Layout =========*/
+.reviews-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ====== Individual Review Styles ====== */
+
+
+/* ====== Spot Name Header ====== */
+.review-spot {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+/* ====== Review Date Styling ====== */
+.manage-review-date {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+/* ====== Review Text Styling ====== */
+.review-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* ====== Button Container ====== */
+.review-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: left;
+}
+
+/* ====== Update & Delete Buttons ====== */
+/* Set equal width, height, and padding for Update & Delete buttons */
+.update-review-button,
+.delete-review-button {
+    width: 100px;  /* Adjust width as needed */
+    height: 32px;  /* Ensure both buttons have the same height */
+    border: 3px solid black;
+    background-color: #4d4e4e;
+    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0);
+    color: white;
+    padding: 5px 0;  /* Adjust padding for consistent height */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; /* Prevent padding from affecting height */
+}
+
+.update-review-button:hover,
+.delete-review-button:hover {
+    background-color: #5a5b5b;
+}
+
+
+/* ====== Responsive Design ====== */
+@media (max-width: 600px) {
+    .manage-reviews-container {
+        padding: 10px;
+    }
+
+    .review-item {
+        width: 100%; /* Make it take full width on smaller screens */
+    }
+
+    .review-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .update-review-button,
+    .delete-review-button {
+        width: 100%;
+    }
+}
