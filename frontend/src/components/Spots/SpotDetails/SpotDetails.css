@@ -1,6 +1,7 @@
 /* ========== GENERAL CONTAINER STYLES ========== */
 .spot-details-container {
   max-width: 1000px; /* Maximum width */
+  width: 85%;
   margin: 0 auto; /* Center the content */
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -202,7 +203,7 @@
 
 
 .review-text {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 .review {

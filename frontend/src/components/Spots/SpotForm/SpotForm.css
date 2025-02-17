@@ -114,5 +114,15 @@
   font-size: 1.5rem; /* Adjust size as needed */
   margin-top: 10px; /* Align with input box vertically */
 }
+
+
+
+/* =========================
+    Description section
+  ========================== */
+
+.description-section {
+  height: 150px;
+}
    
   

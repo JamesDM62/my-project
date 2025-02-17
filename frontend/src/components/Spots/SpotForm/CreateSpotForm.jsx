@@ -234,6 +234,7 @@ function CreateSpotForm() {
                     {errors.description && <p className="error-message">{errors.description}</p>}
                     <textarea
                         value={description}
+                        className="description-section"
                         onChange={(e) => setDescription(e.target.value)}
                         required
                         placeholder="Please write at least 30 characters"

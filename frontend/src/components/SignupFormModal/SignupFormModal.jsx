@@ -41,7 +41,9 @@ const SignupFormModal = () => {
         });
     };
 
-    return(
+    
+
+    return (
         <div className="signup-container">
             <div className="signup-box">
 
@@ -55,7 +57,7 @@ const SignupFormModal = () => {
                             placeholder="First Name"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
-                            required 
+                            required
                         />
                     </label>
                     <label className="signup-info">
@@ -66,7 +68,7 @@ const SignupFormModal = () => {
                             placeholder="Last Name"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
-                            required 
+                            required
                         />
                     </label>
                     <label className="signup-info">
@@ -77,7 +79,7 @@ const SignupFormModal = () => {
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required 
+                            required
                         />
                     </label>
                     <label className="signup-info">
@@ -88,7 +90,7 @@ const SignupFormModal = () => {
                             placeholder="Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            required 
+                            required
                         />
                     </label>
                     <label className="signup-info">
@@ -99,7 +101,7 @@ const SignupFormModal = () => {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required 
+                            required
                         />
                     </label>
                     <label className="signup-info">
@@ -110,7 +112,7 @@ const SignupFormModal = () => {
                             placeholder="Confirm Password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            required 
+                            required
                         />
                     </label>
                     <button type="submit" className="signup-button" disabled={!email || !username || !firstName || !lastName || !password || !confirmPassword || username.length < 4 || password.length < 6}>
