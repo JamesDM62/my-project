@@ -31,7 +31,8 @@ const SignupFormModal = () => {
                 })
             )
                 .then(() => {
-                    closeModal().then(() => navigate("/"));
+                    closeModal();
+                    setTimeout(() => navigate("/"), 100);
                 })
                 .catch(async (res) => {
                     const data = await res.json();

@@ -18,7 +18,8 @@ const LoginFormModal = () => {
     setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
         .then(() => {
-            closeModal().then(() => navigate("/"));
+            closeModal();
+            setTimeout(() => navigate("/"), 100);
         })
         .catch(async (res) => {
             // const data = await res.json();
@@ -35,7 +36,7 @@ const LoginFormModal = () => {
     e.preventDefault();
     await dispatch(sessionActions.loginDemoUser());
     closeModal();
-    navigate("/");
+    setTimeout(() => navigate("/"), 100);
   };
 
   return (
