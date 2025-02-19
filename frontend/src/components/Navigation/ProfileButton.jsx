@@ -43,11 +43,11 @@ function ProfileButton({ user }) {
   };
 
   // ✅ Redirect to home after successful signup/login
-  useEffect(() => {
-    if (user) {
-      navigate("/", { replace: true });
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate("/", { replace: true });
+  //   }
+  // }, [user, navigate]);
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 

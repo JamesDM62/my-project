@@ -16,6 +16,12 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
+      setIsLoaded(true);
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(sessionActions.restoreUser()).then(() => {
       setIsLoaded(true)
     });
   }, [dispatch]);
