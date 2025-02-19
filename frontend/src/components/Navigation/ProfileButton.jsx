@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
   // ✅ Redirect to home after successful signup/login
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/", { replace: true });
     }
   }, [user, navigate]);
 
