@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useNavigate } from "react-router-dom";
 import './LoginForm.css';
 
 const LoginFormModal = () => {
@@ -10,12 +11,16 @@ const LoginFormModal = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
-        .then(closeModal)
+        .then(() => {
+            closeModal();
+            navigate("/")
+        })
         .catch(async (res) => {
             // const data = await res.json();
             // if (data && data.errors) {
@@ -31,6 +36,7 @@ const LoginFormModal = () => {
     e.preventDefault();
     await dispatch(sessionActions.loginDemoUser());
     closeModal();
+    navigate("/");
   };
 
   return (
