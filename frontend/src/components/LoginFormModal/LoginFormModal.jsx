@@ -2,41 +2,39 @@ import { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useNavigate } from "react-router-dom";
 import './LoginForm.css';
 
-const LoginFormModal = () => {
+const LoginFormModal = ({ onLoginSuccess }) => {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
-        .then(() => {
-            closeModal();
-            setTimeout(() => navigate("/"), 100);
-        })
-        .catch(async (res) => {
-            // const data = await res.json();
-            // if (data && data.errors) {
-            //     setErrors(data.errors);
-            // }
-            await res.json();
-            setErrors({ credential: "The Provided credentials were invalid" });
+      .then(() => {
+        closeModal();
+        if (onLoginSuccess) {
+          setTimeout(() => onLoginSuccess(), 100); // Navigate after modal closes
         }
-    );
-  };
+      })
+      .catch(async (res) => {
+        await res.json();
+        setErrors({ credential: "The Provided credentials were invalid" });
+      });
+};
+
 
   const handleDemoLogin = async (e) => {
     e.preventDefault();
     await dispatch(sessionActions.loginDemoUser());
     closeModal();
-    setTimeout(() => navigate("/"), 100);
+    if (onLoginSuccess) {
+        setTimeout(() => onLoginSuccess(), 100); // Navigate after modal closes
+    }
   };
 
   return (

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useNavigate } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import './SignupForm.css';
 
-const SignupFormModal = () => {
+const SignupFormModal = ({ onLoginSuccess }) => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -15,7 +14,6 @@ const SignupFormModal = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,7 +30,9 @@ const SignupFormModal = () => {
             )
                 .then(() => {
                     closeModal();
-                    setTimeout(() => navigate("/"), 100);
+                    if (onLoginSuccess) {
+                        setTimeout(() => onLoginSuccess(), 100); // Navigate after modal closes
+                      }
                 })
                 .catch(async (res) => {
                     const data = await res.json();
