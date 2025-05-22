@@ -50,21 +50,21 @@ module.exports = {
       }
     }, options);
 
-    // await queryInterface.addConstraint(
-    //   process.env.NODE_ENV === 'production' ? `${process.env.SCHEMA}.Reviews` : 'Reviews',
-    //   {
-    //     fields: ['userId', 'spotId'],
-    //     type: 'unique',
-    //     name: 'user_spot_unique_constraint'
-    //   }
-    // );
+    await queryInterface.addConstraint(
+      process.env.NODE_ENV === 'production' ? `${process.env.SCHEMA}.Reviews` : 'Reviews',
+      {
+        fields: ['userId', 'spotId'],
+        type: 'unique',
+        name: 'user_spot_unique_constraint'
+      }
+    );
     
 
-    await queryInterface.addConstraint('my_project_schema.Reviews', {
-      fields: ['userId', 'spotId'],
-      type: 'unique',
-      name: 'user_spot_unique_constraint'
-    }, options);
+    // await queryInterface.addConstraint('my_project_schema.Reviews', {
+    //   fields: ['userId', 'spotId'],
+    //   type: 'unique',
+    //   name: 'user_spot_unique_constraint'
+    // }, options);
   },
 
   // async down(queryInterface, Sequelize) {
